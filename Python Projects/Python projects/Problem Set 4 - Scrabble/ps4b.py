@@ -125,9 +125,38 @@ def playGame(wordList):
     wordList: list (string)
     """
     # TO DO... <-- Remove this comment when you code this function
-    print("playGame not yet implemented.") # <-- Remove this when you code this function
-
+        # Variable for last hand played. Empty at beginning.
+    lastHand = {}
+    
+    while True:
+        # Ask user for input n/r/e
+        playerChoice = input('Enter n to deal a new hand, r to replay the last hand, or e to end game: ')
         
+        # If n, play a new random hand
+        if playerChoice == 'n':
+            hand = dealHand(HAND_SIZE)
+            # Store hand in Last Hand variable
+            lastHand = hand.copy()
+            # Play a new hand
+            playHand(hand, wordList, HAND_SIZE)
+        
+        # If r, play the last hand again
+        elif playerChoice == 'r':
+            # If first hand, print You have not played a hand yet.
+            if lastHand == {}:
+                print('You have not played a hand yet. Please play a new hand first!')
+            # If a hand has already been played, play a new hand
+            else:
+                playHand(hand, wordList, HAND_SIZE) 
+            
+        # If e, exit the game
+        elif playerChoice == 'e':
+            break
+        
+        # Throw invalid command for bad player input
+        else:
+            print('Invalid command')
+
 #
 # Build data structures used for entire session and play game
 #
