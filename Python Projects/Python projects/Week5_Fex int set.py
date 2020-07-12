@@ -38,3 +38,21 @@ class intSet(object):
         """Returns a string representation of self"""
         self.vals.sort()
         return '{' + ','.join([str(e) for e in self.vals]) + '}'
+
+    def intersect(self, other):
+        '''returns a new intSet containing elements that appear in both sets'''
+        inters = self.vals
+        for a in other.vals:
+            if a not in inters:
+                inters.append(a)
+        return inters
+        
+
+s2 = intSet()
+s1 = intSet()
+s1.insert(1)
+s1.insert(2)
+s1.insert(3)
+s2.insert(3)
+s2.insert(4)
+print(s1.intersect(s2))
