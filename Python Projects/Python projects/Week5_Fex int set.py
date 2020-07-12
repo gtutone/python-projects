@@ -41,11 +41,14 @@ class intSet(object):
 
     def intersect(self, other):
         '''returns a new intSet containing elements that appear in both sets'''
-        inters = self.vals
-        for a in other.vals:
-            if a not in inters:
+        inters = []
+        for a in self.vals:
+            if a in other.vals:
                 inters.append(a)
         return inters
+    
+    def __len__(self):
+        return len(self.vals)
         
 
 s2 = intSet()
@@ -55,4 +58,5 @@ s1.insert(2)
 s1.insert(3)
 s2.insert(3)
 s2.insert(4)
-print(s1.intersect(s2))
+intersectional = s1.intersect(s2)
+print(intersectional)
