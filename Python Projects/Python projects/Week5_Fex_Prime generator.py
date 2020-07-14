@@ -6,24 +6,42 @@ Created on Mon Jul 13 22:12:54 2020
 @author: gabrieltutone
 """
 
-class Primes(object):
+# class Primes(object):
     
-    def __init__(self):
-        self.counter = 0
-        self.numbers = []
-        self.primes = []
+#     counter = 0
+#     numbers = []
+#     primes = []
+    
+#     def __init__(self):
+#         pass
         
-    def genPrimes(self):
-        while True:
-            counter =+ 1
-            numbers.append(counter)
-            yield counter
+#     def genPrimes(self):
+#         while True:
+#             counter =+ 1
+#             numbers.append(counter)
+#             yield counter
+    
+#     def __next__(self):
 
-primesNums = 0
+# primesNums = 0
+# print(type(primesNums))
+# primesNums = Primes()
+# print(type(primesNums))
 
-print(type(primesNums))
+# primesNums.next()
 
-primesNums = Primes()
 
-print(type(primesNums))
 
+
+def genPrimes():
+    primes = [2]
+    counter = 1
+    while True:
+        counter += 1
+        for x in primes:
+            if counter % x != 0:
+                primes.append(counter)
+                yield counter
+
+
+primes = genPrimes()
