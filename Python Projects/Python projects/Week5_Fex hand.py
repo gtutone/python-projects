@@ -89,18 +89,24 @@ class Hand(object):
             handCopy[letter] = handCopy.get(letter, 0) - 1
         # return boolean if word was able to be made with letters in hand
         for letter in handCopy:
-            if handCopy[letter] < 0:
+            if handCopy[letter] < 0:  
                 return False
+        # Modify original hand
+        for letter in word:
+            self.hand[letter] = self.hand.get(letter, 1) - 1        
         return True
 
     
 myHand = Hand(9)
 print(myHand)
 print(myHand.calculateLen())
-
 myHand.setDummyHand('paeppmxde')
 print(myHand)
 print(myHand.calculateLen())
-
 print(myHand.update('pear'))
+print(myHand)
+
+myHand = Hand(10)
+myHand.setDummyHand('plapepbkqf')
+myHand.update('apple')
 print(myHand)
