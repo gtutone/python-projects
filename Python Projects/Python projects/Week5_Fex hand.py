@@ -82,19 +82,25 @@ class Hand(object):
         word: string
         returns: Boolean (if the word was or was not made)
         """
-        # Update the hand
-        
+        # Copy hand
+        handCopy = self.hand.copy()
+        # Update the copy of the hand
+        for letter in word:
+            handCopy[letter] = handCopy.get(letter, 0) - 1
         # return boolean if word was able to be made with letters in hand
-
+        for letter in handCopy:
+            if handCopy[letter] < 0:
+                return False
+        return True
 
     
-myHand = Hand(7)
+myHand = Hand(9)
 print(myHand)
 print(myHand.calculateLen())
 
-myHand.setDummyHand('aazzmsp')
+myHand.setDummyHand('paeppmxde')
 print(myHand)
 print(myHand.calculateLen())
 
-myHand.update('za')
+print(myHand.update('pear'))
 print(myHand)
