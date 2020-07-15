@@ -108,17 +108,17 @@ class Message(object):
         upperList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
                      'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
                      'Y', 'Z']
-        lowerDict = {'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f',
-                     'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l',
-                     'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r',
-                     's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x',
-                     'y': 'y', 'z': 'z'}
-        upperDict = {'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F',
-                     'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K', 'L': 'L',
-                     'M': 'M', 'N': 'N', 'O': 'O', 'P': 'P', 'Q': 'Q', 'R': 'R',
-                     'S': 'S', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X',
-                     'Y': 'Y', 'Z': 'Z'}
-        shiftDict = {}
+        # lowerDict = {'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f',
+        #              'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l',
+        #              'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r',
+        #              's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x',
+        #              'y': 'y', 'z': 'z'}
+        # upperDict = {'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F',
+        #              'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K', 'L': 'L',
+        #              'M': 'M', 'N': 'N', 'O': 'O', 'P': 'P', 'Q': 'Q', 'R': 'R',
+        #              'S': 'S', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X',
+        #              'Y': 'Y', 'Z': 'Z'}
+        shiftDict = {' ':' '}
         
         # iterate over lowercase list, add shift to index number and add to the shifted dictionary
         for i in range(len(lowerList)):
@@ -137,6 +137,12 @@ class Message(object):
             # if the shift goes over length of alphabet, subtract 26 to start over
             else:
                 shiftDict[upperList[i]] = upperList[i+shift-26]
+        # add punctuation
+        for i in range(len(string.punctuation)):
+            shiftDict[string.punctuation[i]] = string.punctuation[i]
+        # add digits
+        for i in range(len(string.digits)):
+            shiftDict[string.digits[i]] = string.digits[i]
         
         return shiftDict
             
@@ -153,7 +159,7 @@ class Message(object):
         Returns: the message text (string) in which every character is shifted
              down the alphabet by the input shift
         '''
-        pass #delete this line and replace with your code here
+        
 
 class PlaintextMessage(Message):
     def __init__(self, text, shift):
@@ -257,7 +263,7 @@ class CiphertextMessage(Message):
 
 hello = Message("Hello, how's it going?")
 
-hello.apply_shift(3)
+print(hello.build_shift_dict(3))
 
 
 
