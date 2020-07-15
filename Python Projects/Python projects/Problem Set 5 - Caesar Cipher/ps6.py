@@ -102,8 +102,45 @@ class Message(object):
         Returns: a dictionary mapping a letter (string) to 
                  another letter (string). 
         '''
-        pass #delete this line and replace with your code here
+        lowerList = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 
+                       'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 
+                       'w', 'x', 'y', 'z']
+        upperList = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 
+                     'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 
+                     'Y', 'Z']
+        lowerDict = {'a': 'a', 'b': 'b', 'c': 'c', 'd': 'd', 'e': 'e', 'f': 'f',
+                     'g': 'g', 'h': 'h', 'i': 'i', 'j': 'j', 'k': 'k', 'l': 'l',
+                     'm': 'm', 'n': 'n', 'o': 'o', 'p': 'p', 'q': 'q', 'r': 'r',
+                     's': 's', 't': 't', 'u': 'u', 'v': 'v', 'w': 'w', 'x': 'x',
+                     'y': 'y', 'z': 'z'}
+        upperDict = {'A': 'A', 'B': 'B', 'C': 'C', 'D': 'D', 'E': 'E', 'F': 'F',
+                     'G': 'G', 'H': 'H', 'I': 'I', 'J': 'J', 'K': 'K', 'L': 'L',
+                     'M': 'M', 'N': 'N', 'O': 'O', 'P': 'P', 'Q': 'Q', 'R': 'R',
+                     'S': 'S', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X',
+                     'Y': 'Y', 'Z': 'Z'}
+        shiftDict = {}
+        
+        # iterate over lowercase list, add shift to index number and add to the shifted dictionary
+        for i in range(len(lowerList)):
 
+            if i+shift < 26:
+                shiftDict[lowerList[i]] = lowerList[i+shift]
+            # if the shift goes over length of alphabet, subtract 26 to start over
+            else:
+                shiftDict[lowerList[i]] = lowerList[i+shift-26]
+         
+                # iterate over uppercase list, add shift to index number and add to the shifted dictionary
+        for i in range(len(upperList)):
+
+            if i+shift < 26:
+                shiftDict[upperList[i]] = upperList[i+shift]
+            # if the shift goes over length of alphabet, subtract 26 to start over
+            else:
+                shiftDict[upperList[i]] = upperList[i+shift-26]
+        
+        return shiftDict
+            
+        
     def apply_shift(self, shift):
         '''
         Applies the Caesar Cipher to self.message_text with the input shift.
@@ -208,11 +245,19 @@ class CiphertextMessage(Message):
         pass #delete this line and replace with your code here
 
 #Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('hello', 2)
-print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
+# plaintext = PlaintextMessage('hello', 2)
+# print('Expected Output: jgnnq')
+# print('Actual Output:', plaintext.get_message_text_encrypted())
     
-#Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('jgnnq')
-print('Expected Output:', (24, 'hello'))
-print('Actual Output:', ciphertext.decrypt_message())
+# #Example test case (CiphertextMessage)
+# ciphertext = CiphertextMessage('jgnnq')
+# print('Expected Output:', (24, 'hello'))
+# print('Actual Output:', ciphertext.decrypt_message())
+
+
+hello = Message("Hello, how's it going?")
+
+hello.apply_shift(3)
+
+
+
