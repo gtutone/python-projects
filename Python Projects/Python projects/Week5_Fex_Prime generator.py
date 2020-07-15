@@ -29,19 +29,21 @@ Created on Mon Jul 13 22:12:54 2020
 # print(type(primesNums))
 
 # primesNums.next()
-
-
-
+import math
 
 def genPrimes():
-    primes = [2]
-    counter = 1
+    counter = 2
     while True:
+        isPrime = True
+        
+        for x in range(2, int(math.sqrt(counter) + 1)):
+            if counter % x == 0:
+                isPrime = False
+                break
+        
+        if isPrime:
+            yield counter
+        
         counter += 1
-        for x in primes:
-            if counter % x != 0:
-                primes.append(counter)
-                yield counter
-
 
 primes = genPrimes()
