@@ -290,10 +290,19 @@ class CiphertextMessage(Message):
         
         return decrypted
         
-        
-        
+def decrypt_story():
+    story = get_story_string()
+    
+    story = CiphertextMessage(story)
+    
+    return story.decrypt_message()
 
-# Example test case (PlaintextMessage)
+
+
+
+
+
+# # Example test case (PlaintextMessage)
 # plaintext = PlaintextMessage('n', 15)
 # print('Output:', plaintext.get_message_text_encrypted())
 # print(plaintext.get_encrypting_dict())
@@ -302,11 +311,13 @@ class CiphertextMessage(Message):
 # print(plaintext.shift)
 # print(plaintext.get_message_text_encrypted())
     
-# Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('jgnnq ciao')
-print('Expected Output:', (24, 'hello'))
-print('Actual Output:', ciphertext.decrypt_message())
+# # Example test case (CiphertextMessage)
+# ciphertext = CiphertextMessage('jgnnq ciao')
+# print('Expected Output:', (24, 'hello'))
+# print('Actual Output:', ciphertext.decrypt_message())
 
-# Message class test case
+# # Message class test case
 # hello = Message("xyz 12345")
 # print(hello.apply_shift(3))
+    
+print(decrypt_story())
