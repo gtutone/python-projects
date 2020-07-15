@@ -264,12 +264,31 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
+        splitText = []
+        validWords = {}
+        decrypted = ()
+        # iterate over all possible shift values
+        for i in range(26):
+            ShiftedText = self.apply_shift(i)
+            # Split the shifted text and add it to a list
+            splitText = ShiftedText.split(' ')
+            
+            # Check how many words in the shifted text list are valid
+            for word in splitText:
+                # For each valid word, add shift# as key, and +1 as value to dict
+                if is_word(self.valid_words, word):
+                    validWords[i] = validWords.get(i, 0) + 1
+                # If word is invalid, still add shift# as key and 0 as value
+                else:
+                    validWords[i] = validWords.get(i, 0)
+        # Get best shift key
+        values = list(validWords.values())
+        keys = list(validWords.keys())
+        bestKey = keys[values.index(max(values))]
+        # Add best shift key to decrypted tuple and decode message        
+        decrypted = (bestKey, self.apply_shift(bestKey))
         
-        
-        
-        
-        
-        
+        return decrypted
         
         
         
@@ -284,7 +303,7 @@ class CiphertextMessage(Message):
 # print(plaintext.get_message_text_encrypted())
     
 # Example test case (CiphertextMessage)
-ciphertext = CiphertextMessage('jgnnq')
+ciphertext = CiphertextMessage('jgnnq ciao')
 print('Expected Output:', (24, 'hello'))
 print('Actual Output:', ciphertext.decrypt_message())
 
