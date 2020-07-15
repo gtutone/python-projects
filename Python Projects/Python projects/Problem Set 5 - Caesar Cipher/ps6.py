@@ -118,7 +118,7 @@ class Message(object):
         #              'M': 'M', 'N': 'N', 'O': 'O', 'P': 'P', 'Q': 'Q', 'R': 'R',
         #              'S': 'S', 'T': 'T', 'U': 'U', 'V': 'V', 'W': 'W', 'X': 'X',
         #              'Y': 'Y', 'Z': 'Z'}
-        shiftDict = {' ':' '}
+        shiftDict = {}
         
         # iterate over lowercase list, add shift to index number and add to the shifted dictionary
         for i in range(len(lowerList)):
@@ -137,12 +137,7 @@ class Message(object):
             # if the shift goes over length of alphabet, subtract 26 to start over
             else:
                 shiftDict[upperList[i]] = upperList[i+shift-26]
-        # add punctuation
-        for i in range(len(string.punctuation)):
-            shiftDict[string.punctuation[i]] = string.punctuation[i]
-        # add digits
-        for i in range(len(string.digits)):
-            shiftDict[string.digits[i]] = string.digits[i]
+
         
         return shiftDict
             
@@ -161,7 +156,17 @@ class Message(object):
         '''
         newMessage = ''
         cypher = self.build_shift_dict(shift)
+        cypher[' '] = ' '
         
+        # add punctuation
+        for i in range(len(string.punctuation)):
+            cypher[string.punctuation[i]] = string.punctuation[i]
+        
+        # add digits
+        for i in range(len(string.digits)):
+            cypher[string.digits[i]] = string.digits[i]
+        
+        # apply cypher to message
         for i in self.message_text:
             newMessage = newMessage + str(cypher[i])
         
