@@ -232,8 +232,8 @@ class PlaintextMessage(Message):
 
         Returns: nothing
         '''
-        pass #delete this line and replace with your code here
-
+        self.shift = shift
+        self.message_text_encrypted = self.apply_shift(shift)
 
 class CiphertextMessage(Message):
     def __init__(self, text):
@@ -246,7 +246,7 @@ class CiphertextMessage(Message):
             self.message_text (string, determined by input text)
             self.valid_words (list, determined using helper function load_words)
         '''
-        pass #delete this line and replace with your code here
+        Message.__init__(self, text)
 
     def decrypt_message(self):
         '''
@@ -264,19 +264,29 @@ class CiphertextMessage(Message):
         Returns: a tuple of the best shift value used to decrypt the message
         and the decrypted message text using that shift value
         '''
-        pass #delete this line and replace with your code here
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
 # Example test case (PlaintextMessage)
-plaintext = PlaintextMessage('hello', 2)
-print('Expected Output: jgnnq')
-print('Actual Output:', plaintext.get_message_text_encrypted())
-print(plaintext.get_encrypting_dict())
-print(plaintext.shift)
+# plaintext = PlaintextMessage('n', 15)
+# print('Output:', plaintext.get_message_text_encrypted())
+# print(plaintext.get_encrypting_dict())
+# print(plaintext.shift)
+# plaintext.change_shift(15)
+# print(plaintext.shift)
+# print(plaintext.get_message_text_encrypted())
     
-# # Example test case (CiphertextMessage)
-# ciphertext = CiphertextMessage('jgnnq')
-# print('Expected Output:', (24, 'hello'))
-# print('Actual Output:', ciphertext.decrypt_message())
+# Example test case (CiphertextMessage)
+ciphertext = CiphertextMessage('jgnnq')
+print('Expected Output:', (24, 'hello'))
+print('Actual Output:', ciphertext.decrypt_message())
 
 # Message class test case
 # hello = Message("xyz 12345")
