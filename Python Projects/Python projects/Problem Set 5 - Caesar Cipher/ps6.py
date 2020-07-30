@@ -233,6 +233,7 @@ class PlaintextMessage(Message):
         Returns: nothing
         '''
         self.shift = shift
+        self.build_shift_dict(shift)
         self.message_text_encrypted = self.apply_shift(shift)
 
 class CiphertextMessage(Message):
@@ -302,14 +303,15 @@ def decrypt_story():
 
 
 
-# # Example test case (PlaintextMessage)
-# plaintext = PlaintextMessage('n', 15)
-# print('Output:', plaintext.get_message_text_encrypted())
-# print(plaintext.get_encrypting_dict())
-# print(plaintext.shift)
-# plaintext.change_shift(15)
-# print(plaintext.shift)
-# print(plaintext.get_message_text_encrypted())
+# Example test case (PlaintextMessage)
+plaintext = PlaintextMessage('hello', 10)
+print('Output:', plaintext.get_message_text_encrypted())
+print(plaintext.get_encrypting_dict())
+print(plaintext.shift)
+plaintext.change_shift(15)
+print(plaintext.shift)
+print(plaintext.get_message_text_encrypted())
+print(plaintext.get_encrypting_dict())
     
 # # Example test case (CiphertextMessage)
 # ciphertext = CiphertextMessage('jgnnq ciao')
@@ -320,4 +322,4 @@ def decrypt_story():
 # hello = Message("xyz 12345")
 # print(hello.apply_shift(3))
     
-print(decrypt_story())
+# print(decrypt_story())
